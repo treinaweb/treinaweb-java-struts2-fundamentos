@@ -7,6 +7,6 @@
 <title>Bem-vindo!</title>
 </head>
 <body>
-	<h2>Bem-vindo ao Struts2!</h2>
+	<h2>Bem-vindo ao Struts2</h2>
 </body>
 </html>
