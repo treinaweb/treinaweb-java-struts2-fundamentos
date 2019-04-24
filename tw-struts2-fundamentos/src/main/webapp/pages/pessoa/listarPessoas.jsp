@@ -13,7 +13,12 @@
 	<s:url action="paginaCadastroPessoa" var="paginaCadastroPessoaUrl"></s:url>
 	<s:a href="%{paginaCadastroPessoaUrl}">Cadastrar nova pessoa...</s:a>
 
-	<table border="1">
+	<p>
+		<input type="text" id="txt-nome">
+		<button id="btn-pesquisar">Pesquisar</button>
+	</p>
+
+	<table border="1" id="tbl-pessoas">
 		<thead>
 			<tr>
 				<th>Nome</th>
@@ -43,5 +48,35 @@
 			<s:property value="mensagemErro" />
 		</p>
 	</s:if>
+
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function() {
+			$('#btn-pesquisar').click(function() {
+				var nome = $('#txt-nome').val();
+				$.ajax({
+					method: 'GET',
+					url: 'pesquisarPorNome.action?nome=' + nome,
+					success: function(dados){
+						$('#tbl-pessoas > tbody tr').remove();
+						$.each(dados, function(idx, pessoa){
+							$('#tbl-pessoas > tbody').append(
+									'<tr>' +
+									'	<td>' + pessoa.nome + '</td>' + 
+									'	<td>' + pessoa.idade + '</td>' +
+									'	<td></td>' +
+									'</tr>'
+							);
+						});						
+					},
+					error: function(){
+						alert('Deu erro.');
+					}
+				});
+			});
+		});
+	</script>
 </body>
 </html>
