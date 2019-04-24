@@ -3,12 +3,16 @@
 	"http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 	<constant name="struts.devMode" value="true"></constant>
-	
+
 	<package name="tw-struts2-fundamentos" extends="struts-default">
-		
+
 		<action name="index">
 			<result>/index.jsp</result>
 		</action>
-		
+		<action name="teste"
+			class="br.com.treinaweb.struts2.actions.TesteAction">
+			<result name="TESTE">/teste.jsp</result>
+		</action>
+
 	</package>
 </struts>
