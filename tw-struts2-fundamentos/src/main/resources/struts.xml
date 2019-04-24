@@ -4,7 +4,8 @@
 <struts>
 	<constant name="struts.devMode" value="true"></constant>
 
-	<package name="tw-struts2-fundamentos" extends="struts-default">
+	<package name="tw-struts2-fundamentos"
+		extends="struts-default, json-default">
 
 		<action name="index">
 			<result>/index.jsp</result>
@@ -43,6 +44,16 @@
 			<result name="success" type="redirect">listarPessoas.action</result>
 			<result name="error">/pages/pessoa/cadastrarPessoa.jsp</result>
 			<result name="input">/pages/pessoa/cadastrarPessoa.jsp</result>
+		</action>
+
+		<action name="pesquisarPorNome"
+			class="br.com.treinaweb.struts2.controllers.PessoaController"
+			method="pesquisarPorNome">
+			<result type="json" name="success">
+				<param name="root">
+					pessoasPorNome
+				</param>
+			</result>
 		</action>
 
 	</package>

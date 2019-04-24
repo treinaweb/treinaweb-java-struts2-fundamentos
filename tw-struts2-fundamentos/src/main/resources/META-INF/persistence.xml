@@ -2,8 +2,8 @@
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
-             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
-             version="2.2">
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
 	<persistence-unit name="tw-struts2-fundamentos">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>br.com.treinaweb.struts2.entidades.Pessoa</class>

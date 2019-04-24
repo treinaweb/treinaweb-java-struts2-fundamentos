@@ -16,6 +16,7 @@ public class PessoaController extends ActionSupport {
 	private static final long serialVersionUID = -2325797793748458851L;
 	private Pessoa pessoa;
 	private List<Pessoa> pessoas;
+	private List<Pessoa> pessoasPorNome;
 	private String mensagemErro;
 
 	public String exibirPessoa() {
@@ -56,6 +57,13 @@ public class PessoaController extends ActionSupport {
 		}
 	}
 
+	public String pesquisarPorNome() {
+		PessoaService ps = new PessoaService();
+		String nome = ActionContext.getContext().getParameters().get("nome").getValue();
+		this.pessoasPorNome = ps.pesquisarPorNome(nome);
+		return SUCCESS;
+	}
+
 	@Override
 	public void validate() {
 		if (this.pessoa != null) {
@@ -85,6 +93,10 @@ public class PessoaController extends ActionSupport {
 
 	public String getMensagemErro() {
 		return mensagemErro;
+	}
+
+	public List<Pessoa> getPessoasPorNome() {
+		return pessoasPorNome;
 	}
 
 }

@@ -23,7 +23,7 @@ public class PessoaService {
 			}
 		}
 	}
-	
+
 	public Pessoa porId(Integer id) {
 		Pessoa resultado = new Pessoa();
 		EntityManager em = null;
@@ -37,7 +37,7 @@ public class PessoaService {
 			}
 		}
 	}
-	
+
 	public void inserir(Pessoa p) {
 		EntityManager em = null;
 		try {
@@ -45,6 +45,21 @@ public class PessoaService {
 			em.getTransaction().begin();
 			em.persist(p);
 			em.getTransaction().commit();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
+
+	public List<Pessoa> pesquisarPorNome(String nome) {
+		EntityManager em = null;
+		try {
+			em = JpaUtils.getEntityManager();
+			List<Pessoa> resultado = em
+					.createQuery("from Pessoa p where lower(p.nome) like lower(concat('%', :nome, '%'))", Pessoa.class)
+					.setParameter("nome", nome).getResultList();
+			return resultado;
 		} finally {
 			if (em != null) {
 				em.close();
