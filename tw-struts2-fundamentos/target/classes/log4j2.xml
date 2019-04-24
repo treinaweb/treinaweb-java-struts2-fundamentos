@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<!--  Estruturas que geram o log -->
+	<Appenders>
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d %p (%F:%L) - %m%n" />
+		</Console>
+	</Appenders>
+	<!-- Estruturas que aplicam o log -->
+	<Loggers>
+		<Logger name="com.opensynphony.xwork2" level="debug"></Logger>
+		<Logger name="org.apache.struts2" level="debug"></Logger>
+		<Root level="debug">
+			<AppenderRef ref="STDOUT" />
+		</Root>
+	</Loggers>
+</Configuration>
