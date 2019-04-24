@@ -3,25 +3,47 @@
 	"http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 	<constant name="struts.devMode" value="true"></constant>
-	
+
 	<package name="tw-struts2-fundamentos" extends="struts-default">
-		
+
 		<action name="index">
 			<result>/index.jsp</result>
 		</action>
-		
-		<action name="teste" class="br.com.treinaweb.struts2.actions.TesteAction">
+
+		<action name="teste"
+			class="br.com.treinaweb.struts2.actions.TesteAction">
 			<result name="TESTE">/teste.jsp</result>
 		</action>
-		
+
 		<action name="paginaCadastroPessoa">
 			<result>/pages/pessoa/cadastrarPessoa.jsp</result>
 		</action>
-		
-		<action name="inserirPessoa" class="br.com.treinaweb.struts2.controllers.PessoaController"
-			method="inserirPessoa">
-			<result name="OK">/pages/pessoa/mostrarPessoa.jsp</result>
+
+		<action name="mostrarPessoa"
+			class="br.com.treinaweb.struts2.controllers.PessoaController"
+			method="mostrar">
+			<result name="success">/pages/pessoa/mostrarPessoa.jsp</result>
+			<result name="error">/pages/pessoa/listarPessoas.jsp</result>
 		</action>
-		
+
+		<action name="listarPessoas"
+			class="br.com.treinaweb.struts2.controllers.PessoaController"
+			method="listar">
+			<result name="success">/pages/pessoa/listarPessoas.jsp</result>
+			<result name="error">/pages/pessoa/listarPessoas.jsp</result>
+		</action>
+
+		<action name="paginaCadastroPessoa">
+			<result>/pages/pessoa/cadastrarPessoa.jsp</result>
+		</action>
+
+		<action name="inserirPessoa"
+			class="br.com.treinaweb.struts2.controllers.PessoaController"
+			method="inserir">
+			<result name="success" type="redirect">listarPessoas.action</result>
+			<result name="error">/pages/pessoa/cadastrarPessoa.jsp</result>
+			<result name="input">/pages/pessoa/cadastrarPessoa.jsp</result>
+		</action>
+
 	</package>
 </struts>

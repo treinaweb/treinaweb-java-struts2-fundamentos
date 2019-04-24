@@ -56,6 +56,21 @@ public class PessoaController extends ActionSupport {
 		}
 	}
 
+	@Override
+	public void validate() {
+		if (this.pessoa != null) {
+			if (this.pessoa.getNome() == "") {
+				addFieldError("pessoa.nome", "O nome é obrigatório");
+			}
+			if (this.pessoa.getNome().length() < 3) {
+				addFieldError("pessoa.nome", "O nome deve conter no mínimo 3 caracteres");
+			}
+			if (this.pessoa.getIdade() == null) {
+				addFieldError("pessoa.idade", "A idade deve ser um número válido.");
+			}
+		}
+	}
+
 	public Pessoa getPessoa() {
 		return pessoa;
 	}

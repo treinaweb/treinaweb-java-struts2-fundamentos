@@ -42,6 +42,7 @@
 			method="inserir">
 			<result name="success" type="redirect">listarPessoas.action</result>
 			<result name="error">/pages/pessoa/cadastrarPessoa.jsp</result>
+			<result name="input">/pages/pessoa/cadastrarPessoa.jsp</result>
 		</action>
 
 	</package>
