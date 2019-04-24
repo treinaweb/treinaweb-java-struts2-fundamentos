@@ -1,30 +1,51 @@
 package br.com.treinaweb.struts2.controllers;
 
+import java.util.List;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import br.com.treinaweb.struts2.entidades.Pessoa;
+import br.com.treinaweb.struts2.servicos.PessoaService;
 
 public class PessoaController extends ActionSupport {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2325797793748458851L;
 	private Pessoa pessoa;
-	
-	
-	public String inserirPessoa() {
+	private List<Pessoa> pessoas;
+	private String mensagemErro;
+
+	public String exibirPessoa() {		
 		return "OK";
 	}
-
+	
+	public String listar() {
+		try {
+			PessoaService ps = new PessoaService();
+			this.pessoas = ps.todas();
+			return SUCCESS;
+		} catch (Exception e) {
+			this.mensagemErro = e.getMessage();
+			return ERROR;
+		}
+	}
 
 	public Pessoa getPessoa() {
 		return pessoa;
 	}
 
-
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
+	}
+
+	public List<Pessoa> getPessoas() {
+		return pessoas;
+	}
+
+	public String getMensagemErro() {
+		return mensagemErro;
 	}
 
 }
