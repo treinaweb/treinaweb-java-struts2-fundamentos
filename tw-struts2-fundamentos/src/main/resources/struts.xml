@@ -4,4 +4,9 @@
 <struts>
 	<constant name="struts.devMode" value="true"></constant>
 	
+	<package name="tw-struts2-fundamentos" extends="struts-default">
+		<action name="index">
+			<result>/index.jsp</result>
+		</action>
+	</package>
 </struts>
