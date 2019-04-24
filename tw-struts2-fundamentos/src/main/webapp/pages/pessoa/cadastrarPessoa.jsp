@@ -16,6 +16,11 @@
 		<s:textfield label="Idade" name="pessoa.idade"></s:textfield>
 		<s:submit value="Salvar!"></s:submit>
 	</s:form>
+	<s:if test="mensagemErro != ''">
+		<p style="color: red;">
+			<s:property value="mensagemErro" />
+		</p>
+	</s:if>
 
 </body>
 </html>

@@ -9,6 +9,10 @@
 </head>
 <body>
 	<h3>Listagem de pessoas</h3>
+
+	<s:url action="paginaCadastroPessoa" var="paginaCadastroPessoaUrl"></s:url>
+	<s:a href="%{paginaCadastroPessoaUrl}">Cadastrar nova pessoa...</s:a>
+
 	<table border="1">
 		<thead>
 			<tr>
@@ -23,17 +27,21 @@
 					<td><s:property value="nome" /></td>
 					<td><s:property value="idade" /></td>
 					<td>
-						<s:url action="mostrarPessoa" var="urlMostrarPessoa">
-							<s:param name="id"><s:property value="id" /></s:param>
-						</s:url>
-						<s:a href="%{urlMostrarPessoa}">Exibir</s:a>
+						<!--  mostrarPessoa?id=1 --> <s:url action="mostrarPessoa"
+							var="mostrarPessoaUrl">
+							<s:param name="id">
+								<s:property value="id" />
+							</s:param>
+						</s:url> <s:a href="%{mostrarPessoaUrl}">Mostrar</s:a>
 					</td>
 				</tr>
 			</s:iterator>
 		</tbody>
 	</table>
 	<s:if test="mensagemErro != ''">
-		<p style="color: red;"><s:property value="mensagemErro"/></p>
+		<p style="color: red;">
+			<s:property value="mensagemErro" />
+		</p>
 	</s:if>
 </body>
 </html>

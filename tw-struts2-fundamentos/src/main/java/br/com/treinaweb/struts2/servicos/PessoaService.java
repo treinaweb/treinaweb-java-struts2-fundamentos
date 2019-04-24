@@ -23,5 +23,33 @@ public class PessoaService {
 			}
 		}
 	}
+	
+	public Pessoa porId(Integer id) {
+		Pessoa resultado = new Pessoa();
+		EntityManager em = null;
+		try {
+			em = JpaUtils.getEntityManager();
+			resultado = em.find(Pessoa.class, id);
+			return resultado;
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
+	
+	public void inserir(Pessoa p) {
+		EntityManager em = null;
+		try {
+			em = JpaUtils.getEntityManager();
+			em.getTransaction().begin();
+			em.persist(p);
+			em.getTransaction().commit();
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
 
 }

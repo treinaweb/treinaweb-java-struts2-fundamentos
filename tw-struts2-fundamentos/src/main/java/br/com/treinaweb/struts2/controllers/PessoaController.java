@@ -2,6 +2,7 @@ package br.com.treinaweb.struts2.controllers;
 
 import java.util.List;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import br.com.treinaweb.struts2.entidades.Pessoa;
@@ -17,14 +18,37 @@ public class PessoaController extends ActionSupport {
 	private List<Pessoa> pessoas;
 	private String mensagemErro;
 
-	public String exibirPessoa() {		
+	public String exibirPessoa() {
 		return "OK";
 	}
-	
+
 	public String listar() {
 		try {
 			PessoaService ps = new PessoaService();
 			this.pessoas = ps.todas();
+			return SUCCESS;
+		} catch (Exception e) {
+			this.mensagemErro = e.getMessage();
+			return ERROR;
+		}
+	}
+
+	public String mostrar() {
+		try {
+			int id = Integer.parseInt(ActionContext.getContext().getParameters().get("id").getValue());
+			PessoaService ps = new PessoaService();
+			this.pessoa = ps.porId(id);
+			return SUCCESS;
+		} catch (Exception e) {
+			this.mensagemErro = e.getMessage();
+			return ERROR;
+		}
+	}
+
+	public String inserir() {
+		try {
+			PessoaService ps = new PessoaService();
+			ps.inserir(this.pessoa);
 			return SUCCESS;
 		} catch (Exception e) {
 			this.mensagemErro = e.getMessage();
